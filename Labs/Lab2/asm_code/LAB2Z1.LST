@@ -1,0 +1,27 @@
+DUNFIELD 8051 ASSEMBLER: LAB2Z1                                       PAGE: 1
+
+0000                         1  	ORG 0000H
+0000  02 01 00               2  	LJMP 0100H
+0100                         3  	ORG 0100H
+0100                         4  MAIN:
+0100  D2 AF                  5  	SETB IE.7 
+0102  D2 A9                  6  	SETB IE.1
+0104  75 89 01               7  	MOV 89H,#01H 
+0107  79 10                  8  	MOV R1,#10H
+0109  75 8A 97               9  	MOV 8AH,#97H 
+010C  75 8C 73              10  	MOV 8CH,#73H 
+010F  75 88 10              11  	MOV 88H,#10H 
+0112  80 FE                 12  HERE:	SJMP HERE
+000B                        13  	ORG 000BH
+000B  C2 97                 14  	CLR P1.7
+000D  19                    15  	DEC R1
+000E  E9                    16  	MOV A,R1
+000F  70 0A                 17  	JNZ loop1
+0011  B2 94                 18  	CPL P1.4 
+0013  79 10                 19  	MOV R1,#10H
+0015  75 8A 97              20  	MOV 8AH,#97H 
+0018  75 8C 73              21  	MOV 8CH,#73H
+001B  75 8A 97              22  loop1:	MOV 8AH,#97H 
+001E  75 8C 73              23  	MOV 8CH,#73H
+0021  D2 97                 24  	SETB P1.7
+0023  32                    25  	RETI

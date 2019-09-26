@@ -1,0 +1,32 @@
+DUNFIELD 8051 ASSEMBLER: LAB2D                                        PAGE: 1
+
+0000                         1  	ORG 0000H
+0000  02 01 00               2  	LJMP MAIN	
+000B                         3  	ORG 000BH
+000B  02 01 17               4  	LJMP LED
+0100                         5  	ORG 0100H
+0100  B2 97                  6  MAIN:	CPL P1.7
+0102  D2 AF                  7  	SETB IE.7
+0104  D2 AA                  8  REDO:	SETB IE.2
+0106  C3                     9  	CLR C
+0107  85 01 89              10  	MOV 89H,01
+010A  85 42 8A              11  	MOV 8AH,66
+010D  85 FC 8C              12  	MOV 8CH,00FCH
+0110  85 0A 88              13  	MOV 88H,10 
+0113  50 FE                 14  HERE:	JNC HERE
+0115  80 ED                 15  	SJMP REDO
+0117  B2 97                 16  LED:	CPL P1.7
+0119  75 88 00              17  	MOV 88H,#00H
+011C  7B 02                 18  	MOV R3,#02H
+011E  B2 94                 19  LOOP3:	CPL P1.4
+0120  7A 07                 20  	MOV R2,#07H
+0122  79 B3                 21  LOOP2:	MOV R1,#00B3H
+0124  78 E5                 22  LOOP1:	MOV R0,#00E5H
+0126  00                    23  	NOP
+0127  D8 FE                 24  WAIT:	DJNZ R0,WAIT
+0129  D9 F9                 25  	DJNZ R1,LOOP1
+012B  DA F5                 26  	DJNZ R2,LOOP2
+012D  DB EF                 27  	DJNZ R3,LOOP3
+012F  D3                    28  	SETB C 
+0130  B2 97                 29  	CPL P1.7
+0132  32                    30  	RETI

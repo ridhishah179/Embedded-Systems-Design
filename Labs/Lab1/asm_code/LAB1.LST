@@ -1,0 +1,39 @@
+DUNFIELD 8051 ASSEMBLER: c:\LAB1                                      PAGE: 1
+
+0000                         1  	org $0000
+0000  C2 30                  2  	CLR 0030H
+  ** ERROR ** - 3 - Invalid addressing mode
+0002  C3                     3  	CLR C
+0003  74 2A                  4  	MOV A,#2AH
+0005  75 F0 02               5  	MOV B,#02H 
+0008  A9 F0                  6  	MOV R1,B
+000A  B9 00 05               7  	CJNE R1,#00H,OK
+000D  75 30 01               8  	MOV 0030H,#01H
+0010  80 21                  9  	SJMP ENDLOOP
+0012  C3                    10  OK:CLR C
+0013  F8                    11  	MOV R0,A
+0014  E5 F0                 12  	MOV A,B
+0016  33                    13  	RLC A
+0017  33                    14  	RLC A
+0018  40 1B                 15  	JC ERR
+001A  F5 20                 16  	MOV 0020H,A
+001C  F5 F0                 17  	MOV B,A
+001E  E8                    18  	MOV A,R0
+001F  7A 00                 19  	MOV R2,#00H 
+0021  95 F0                 20  BDIV:SUBB A,B
+0023  40 03                 21  	JC OVER
+0025  0A                    22  	INC R2
+0026  80 F9                 23  	SJMP BDIV
+0028  25 F0                 24  OVER: ADD A,B
+002A  F5 22                 25  	MOV 0022H,A
+002C  8A 21                 26  	MOV 0021H,R2
+002E  8A 23                 27  	MOV 0023H,R2
+0030  75 30 00              28  	MOV 0030H,#00H
+0033  80 FE                 29  ENDLOOP: SJMP ENDLOOP
+0035  F5 23                 30  ERR:MOV 0023H,A
+0037                        31  MOV 0030H,#02H
+  ** ERROR ** - 1 - Unknown instruction
+0037                        32  SJMP ENDLOOP 
+  ** ERROR ** - 1 - Unknown instruction
+
+ 3 error(s) occurred in this assembly.
